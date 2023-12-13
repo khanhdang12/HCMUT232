@@ -1,0 +1,7 @@
+T2	IOT 12h-14h + DataMining 16h-18h
+T3
+T4	NLP 14h-16h
+T5	PPL 9h-12h
+T6	IOT LAB 13h-18h
+T7
+CN

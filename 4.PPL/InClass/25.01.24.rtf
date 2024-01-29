@@ -1,0 +1,81 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 program: decl_list EOF;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 decl_list: decl decl_list | decl;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 decl: var_decl | func_decl;\
+\
+1.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 typ: INT | FLOAT;\
+var_decl: typ id_list SM;\
+id_list: ID CM id_tail | ID;\
+id_tail: CM ID id_tail | ;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+2. \
+my ans:\
+func_decl: typ ID parameters body;\
+parameters: LP (param_list | ) RP;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 param_list: param CM param_list | param;\
+param: type id_list;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 body: LB (elements | ) RB;\
+elements: element elements | element;\
+element: var_decl | statement;\
+\
+teacher ans:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 func_decl: typ ID para_decl body;\
+para_decl: LP para_list RP;\
+para_list: para_lst | ;\
+para_lst: para SM para_list | para;\
+para: type id_list;\
+body: LB body_list RB;\
+body_list: body_lst body_list | ;\
+body_lst: var_decl | statement;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+*NOTE:\
+alist: member atail |;\
+atail: SM member atail | ;\
+if minimum = 1:\
+	alist: member atail;\
+if no seperatable:\
+	atail: member atail | ;\
+\
+3.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 statement_first: assignment | call | return;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 statement: statement_first SM;\
+assignment: ID EQ exp;\
+call: ID LP exp_list RP;\
+exp_list: exp exp_tail | ;\
+exp_tail: CM exp exp_tail | ;\
+return: RETURN exp;\
+\
+teacher ans:\
+stmt_Type: assignStmt | callStmt | returnStmt;\
+statement: stmt_Type SM;\
+assignStmt: ID EQ expression;\
+callStmt: ID LP expression_list RP;\
+returnStmt: RETURN expression;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 expression_list: expression expression_tail | ;\
+expression_tail: CM expression expression_tail | ;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+4.\
+exp: exp1 ADD exp | exp1;\
+exp1: exp2 SUB exp2 | exp2;\
+exp2: exp2 MUL exp3 | exp2 DIV exp3 | exp3;\
+exp3: INTLIT | FLOATLIT | ID | call | sub_exp;\
+}

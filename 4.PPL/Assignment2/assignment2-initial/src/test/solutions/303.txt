@@ -1,0 +1,1 @@
+Program([VarDecl(StringType,Id(Votien)),VarDecl(BoolType,Id(Votien)),VarDecl(StringType,Id(Votien),NumLit(1)),VarDecl(BoolType,Id(Votien),NumLit(1))])

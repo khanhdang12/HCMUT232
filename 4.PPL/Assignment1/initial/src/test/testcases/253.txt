@@ -1,0 +1,8 @@
+func main()
+        begin
+            for i until i == 10 by 2
+                i <- 10
+                break
+            return
+        end
+        

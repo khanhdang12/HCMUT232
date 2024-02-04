@@ -1,0 +1,5 @@
+func main(number b [2,3])
+        begin
+            var abc <- 10
+        end
+        

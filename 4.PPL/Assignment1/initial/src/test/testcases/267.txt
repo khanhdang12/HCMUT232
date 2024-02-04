@@ -1,0 +1,5 @@
+func main()
+        begin
+            haha <- 1 + 1
+        end
+        

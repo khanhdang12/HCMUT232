@@ -1,0 +1,1 @@
+Program([VarDecl(Id(x),CallExpr(Id(fun),[BinaryOp(+,NumLit(1),NumLit(1)),StringLit(a)]))])

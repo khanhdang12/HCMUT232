@@ -48,7 +48,7 @@ class ASTGeneration(ZCodeVisitor):
     def visitImplicit_var(self, ctx:ZCodeParser.Implicit_varContext):
         id = ctx.ID().getText()
         varinit = self.visit(ctx.decl())
-        return VarDecl(name = Id(id), varType = None, modifier = None, varInit = varinit)
+        return VarDecl(name = Id(id), varType = None, modifier = "var", varInit = varinit)
 
     # implicit_dynamic: DYNAMIC ID decl?;
     def visitImplicit_dynamic(self, ctx:ZCodeParser.Implicit_dynamicContext):
@@ -57,7 +57,7 @@ class ASTGeneration(ZCodeVisitor):
             varinit = self.visit(ctx.decl())
         else:   
             varinit = None
-        return VarDecl(name = Id(id), varType = None, modifier = None, varInit = varinit)
+        return VarDecl(name = Id(id), varType = None, modifier = "dynamic", varInit = varinit)
 
     # decl: ASSIGNINIT expression;
     def visitDecl(self, ctx:ZCodeParser.DeclContext):
@@ -66,9 +66,9 @@ class ASTGeneration(ZCodeVisitor):
     # dimenslist: NUMBER_LIT CM dimenslist | NUMBER_LIT;
     def visitDimenslist(self, ctx:ZCodeParser.DimenslistContext):
         if ctx.getChildCount() == 1:
-            return [int(ctx.NUMBER_LIT().getText())]
+            return [float(ctx.NUMBER_LIT().getText())]
         else:
-            return [int(ctx.NUMBER_LIT().getText())] + self.visit(ctx.dimenslist())
+            return [float(ctx.NUMBER_LIT().getText())] + self.visit(ctx.dimenslist())
             
     """
         function:
@@ -272,7 +272,7 @@ class ASTGeneration(ZCodeVisitor):
     # literal: NUMBER_LIT | STRING_LIT | TRUE | FALSE | array_lit;
     def visitLiteral(self, ctx:ZCodeParser.LiteralContext):
         if ctx.NUMBER_LIT():
-            return NumberLiteral(ctx.NUMBER_LIT().getText())
+            return NumberLiteral(float(ctx.NUMBER_LIT().getText()))
         elif ctx.STRING_LIT():
             return StringLiteral(ctx.STRING_LIT().getText())
         elif ctx.TRUE():

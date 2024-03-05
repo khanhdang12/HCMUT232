@@ -1,1 +1,1 @@
-Program([VarDecl(Id(Votien),NumLit(1)),VarDecl(Id(Votien))])
+Program([VarDecl(dynamic,Id(Votien),NumLit(1.0)),VarDecl(dynamic,Id(Votien))])

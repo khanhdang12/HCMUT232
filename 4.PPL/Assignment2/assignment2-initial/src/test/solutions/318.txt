@@ -1,1 +1,1 @@
-Program([VarDecl(Id(x),CallExpr(Id(fun),[]))])
+Program([VarDecl(var,Id(x),CallExpr(Id(fun),[]))])

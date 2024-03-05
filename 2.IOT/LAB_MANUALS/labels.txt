@@ -1,0 +1,3 @@
+0 Khong Khau Trang
+1 Deo Khau Trang
+2 Khong Co Nguoi

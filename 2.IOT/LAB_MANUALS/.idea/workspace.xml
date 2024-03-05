@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c14f47d6-5712-45f9-b40c-164be4e1fc89" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/main/zcode/astgen/ASTGeneration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/main/zcode/astgen/ASTGeneration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/ASTGenSuite.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/ASTGenSuite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/302.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/302.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/303.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/303.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/304.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/304.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/305.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/305.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/306.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/306.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/307.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/307.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/311.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/311.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/312.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/312.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/313.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/313.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/314.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/314.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/315.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/315.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/316.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/316.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/317.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/317.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/318.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/318.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/319.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/319.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/320.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/320.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/321.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/321.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/324.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/324.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/325.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/325.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/326.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/326.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/327.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/327.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/328.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/328.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/329.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/329.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/330.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/solutions/330.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/testcases/305.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/testcases/305.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/testcases/324.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/testcases/324.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/testcases/330.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../4.PPL/Assignment2/assignment2-initial/src/test/testcases/330.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/submit/72.g4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../4.PPL/Assignment2/submit/72.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2d4tVAevpiISk1RdwNZ230Ohv9Z" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c14f47d6-5712-45f9-b40c-164be4e1fc89" name="Changes" comment="" />
+      <created>1709279203374</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709279203374</updated>
+    </task>
+    <servers />
+  </component>
+</project>

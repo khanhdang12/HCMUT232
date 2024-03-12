@@ -7,6 +7,17 @@ from TestUtils import TestLexer
 # https://www.facebook.com/groups/211867931379013  
 class LexerSuite(unittest.TestCase):
 
+    def testcase(self):	
+        input = """func main() begin
+if (1) writeString("1")
+elif (2) if(3) writeString("1")
+elif (4) writeString("1")
+else writeString("1")
+end
+"""
+        expect = """"""
+        self.assertTrue(TestLexer.test(input, expect, 100))
+
     def test_KeyWord_Operators_Separators(self):
         """test KeyWord Operators Separators"""
         

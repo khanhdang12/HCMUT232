@@ -1,1 +1,0 @@
-Program([FuncDecl(Id(main),[VarDecl(NumberType,Id(a))]),FuncDecl(Id(main),[VarDecl(NumberType,Id(a)),VarDecl(StringType,Id(a)),VarDecl(ArrayType([2.0],BoolType),Id(a))]),FuncDecl(Id(main),[VarDecl(ArrayType([1.0,2.0],NumberType),Id(Votien))], Return())])

@@ -1,1 +1,0 @@
-Program([FuncDecl(Id(main),[], Block([For(Id(i),BinaryOp(>,Id(i),NumLit(2.0)),BinaryOp(+,NumLit(1.0),NumLit(1.0)),Call(Id(print),[NumLit(1.0)])])])),FuncDecl(Id(main),[], Block([For(Id(i),Id(i),[NumLit(1.0)],Block([Call(Id(print),[NumLit(1.0)])])])]))])

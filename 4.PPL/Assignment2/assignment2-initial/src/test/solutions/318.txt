@@ -1,1 +1,0 @@
-Program([VarDecl(var,Id(x),CallExpr(Id(fun),[]))])

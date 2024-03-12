@@ -1,1 +1,0 @@
-Program([FuncDecl(Id(main),[], Block([Call(Id(main),[Id(a)]),Call(Id(main),[NumLit(1.0),NumLit(1.0)])])),FuncDecl(Id(main),[], Block([Call(Id(main),[])]))])

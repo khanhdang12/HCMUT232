@@ -1,1 +1,0 @@
-Program([VarDecl(var,Id(x),[[NumLit(1.0)],[NumLit(1.0)]]),VarDecl(var,Id(x),[[NumLit(1.0)]])])

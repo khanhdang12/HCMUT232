@@ -1,1 +1,0 @@
-Program([VarDecl(ArrayType([5.0,3.0,4.2],NumberType),Id(VoTien),NumLit(1.0)),VarDecl(ArrayType([2.0,3.0,4.0],BoolType),Id(VoTien))])

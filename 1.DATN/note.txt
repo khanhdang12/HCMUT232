@@ -1,0 +1,10 @@
+### NOTE:
+## about coref: https://www.youtube.com/watch?v=rpwEWLaueRk
+## train a coref model (using translation model to pick the same semantics in link: https://easychair.org/publications/preprint_open/5tZh)
+## make coref model (maybe) in link (fake ip, on Opera): https://medium.com/huggingface/state-of-the-art-neural-coreference-resolution-for-chatbots-3302365dcf30
+#                                                        https://medium.com/huggingface/how-to-train-a-neural-coreference-model-neuralcoref-2-7bb30c1abdfe
+#                                                        https://github.com/huggingface/neuralcoref
+## find translation data (preferably on academic affairs)
+## do intent recognition (intent discoveries) to better extracting info for question decomposition in link: https://arxiv.org/pdf/2104.12114.pdf
+#                                                                                                           https://aclanthology.org/2021.nlp4convai-1.12.pdf
+## enhance model using question decomposition in link: https://www.youtube.com/watch?v=B9lNe6uy0wE

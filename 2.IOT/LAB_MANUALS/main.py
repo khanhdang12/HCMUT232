@@ -32,7 +32,8 @@ client.connect()
 client.loop_background()
 counter = 10
 sensor_type = 0
-counter_ai = 5
+counter_ai = 10
+ai_result = ""
 
 while True:
     counter = counter - 1
@@ -57,10 +58,10 @@ while True:
 
     counter_ai = counter_ai - 1
     if counter_ai <= 0:
-        counter_ai = 5
+        counter_ai = 10
         previous_result = ai_result
         ai_result = image_dectector()
-        print("AI output: ", ai_result)
+        # print("AI output: ", ai_result)
         if previous_result != ai_result:
             client.publish("ai", ai_result)
 

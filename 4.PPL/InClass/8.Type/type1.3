@@ -1,0 +1,142 @@
+class StaticCheck(Visitor):
+    # class Program: #decl:List[VarDecl],stmts:List[Assign]
+    def visitProgram(self,ctx:Program,o):
+        name = {}
+        for x in ctx.decl:
+            self.visit(x, name)
+        for y in ctx.stmts:
+            self.visit(y, name)
+
+    # class VarDecl: #name:str
+    def visitVarDecl(self,ctx:VarDecl,o): 
+        o[ctx.name] = 'noTyp'
+
+    # class Assign: #lhs:Id,rhs:Exp
+    def visitAssign(self,ctx:Assign,o): 
+        rhsval, rhstyp = self.visit(ctx.rhs, o)
+        lhsval, lhstyp = self.visit(ctx.lhs, o)
+        
+        if lhstyp == 'noTyp' and rhstyp == 'noTyp':
+            raise TypeCannotBeInferred(ctx)
+            
+        elif lhstyp == 'noTyp':
+            o[lhsval] = rhstyp
+            
+        elif rhstyp == 'noTyp':
+            o[rhsval] = lhstyp
+        
+        elif lhstyp != rhstyp:
+            raise TypeMismatchInStatement(ctx)
+
+    # class BinOp(Exp): #op:str,e1:Exp,e2:Exp #op is +,-,*,/,+.,-.,*.,/., &&,||, >, >., >b, =, =., =b
+    def visitBinOp(self,ctx:BinOp,o): 
+        op = ctx.op
+        e1val, e1typ = self.visit(ctx.e1, o)
+        e2val, e2typ = self.visit(ctx.e2, o)
+        if op in ['+' ,'-' , '*', '/']:
+            if e1typ == 'noTyp':
+                e1typ = 'int'
+                o[e1val] = 'int'
+            elif e2typ == 'noTyp':
+                e2typ = 'int'
+                o[e2val] = 'int'
+            if e1typ != 'int' or e2typ != 'int':
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'int'
+            
+        elif op in ['+.', '-.', '*.', '/.']:
+            if e1typ == 'noTyp':
+                e1typ = 'float'
+                o[e1val] = 'float'
+            elif e2typ == 'noTyp':
+                e2typ = 'float'
+                o[e2val] = 'float'
+            if e1typ != 'float' or e2typ != 'float':
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'float'
+            
+        elif op in ['>', '=']:
+            if e1typ == 'noTyp':
+                e1typ = 'int'
+                o[e1val] = 'int'
+            elif e2typ == 'noTyp':
+                e2typ = 'int'
+                o[e2val] = 'int'
+            if e1typ != 'int' or e2typ != 'int':
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'bool'
+            
+        elif op in ['>.', '=.']:
+            if e1typ == 'noTyp':
+                e1typ = 'float'
+                o[e1val] = 'float'
+            elif e2typ == 'noTyp':
+                e2typ = 'float'
+                o[e2val] = 'float'
+            if e1typ != 'float' or e2typ != 'float':
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'bool'
+            
+        elif op in ['!', '&&', '||', '>b' , '=b']:
+            if e1typ == 'noTyp':
+                e1typ = 'bool'
+                o[e1val] = 'bool'
+            elif e2typ == 'noTyp':
+                e2typ = 'bool'
+                o[e2val] = 'bool'
+            if e1typ != 'bool' or e2typ != 'bool':
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'bool'
+            
+    # class UnOp(Exp): #op:str,e:Exp #op is -,-., !,i2f, floor
+    def visitUnOp(self,ctx:UnOp,o):
+        op = ctx.op
+        eval, etyp = self.visit(ctx.e, o)
+        if op == '-':
+            if etyp == 'noTyp':
+                etyp = 'int'
+                o[eval] = 'int'
+            if etyp != 'int':
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'int'
+            
+        elif op == '-.':
+            if etyp == 'noTyp':
+                etyp = 'float'
+                o[eval] = 'float'
+            if etyp != 'float':
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'float'
+        
+        elif op == 'i2f':
+            if etyp == 'noTyp':
+                etyp = 'int'
+                o[eval] = 'int'
+            if etyp != 'int' :
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'float'
+            
+        elif op == 'floor':
+            if etyp == 'noTyp':
+                etyp = 'float'
+                o[eval] = 'float'
+            if e1typ != 'float':
+               raise TypeMismatchInExpression (ctx)
+            return 'noTyp', 'int'
+        
+
+    def visitIntLit(self,ctx:IntLit,o): 
+        return ctx.val, 'int'
+
+    def visitFloatLit(self,ctx,o): 
+        return ctx.val, 'float'
+
+    def visitBoolLit(self,ctx,o): 
+        return ctx.val, 'bool'
+        
+    # class Id(Exp): #name:str
+    def visitId(self,ctx,o): 
+        name = ctx.name
+        if name not in o:
+            raise UndeclaredIdentifier(name)
+        return name, o[name]

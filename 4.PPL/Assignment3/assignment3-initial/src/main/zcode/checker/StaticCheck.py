@@ -45,7 +45,6 @@ class StaticChecker(BaseVisitor, Utils):
         if typ1 is ArrayType and typ2 is ArrayType:
             if LHS.size != RHS.size:
                 return False 
-            #^ xét từng phần tử trong size của 2 thằng nếu không giống nhau trả Flase
             elif type(LHS.eleType) != type(RHS.eleType):
                 return False
             else:
@@ -114,7 +113,7 @@ class StaticChecker(BaseVisitor, Utils):
         if name in param[0]:
             raise Redeclared(Variable(), name)
 
-        param[0][name] = VarZcode(ast.varType) #! cập nhật param mới đưa tên vào, biến dynamic hay var sẽ type = None
+        param[0][name] = VarZcode(ast.varType) 
 
         if ast.varInit:    
             expType = self.visit(ast.varInit, param)
@@ -370,9 +369,9 @@ class StaticChecker(BaseVisitor, Utils):
             raise TypeMismatchInStatement(ast)       
         
         
-        self.BlockFor += 1 #! vào trong vòng for nào anh em
-        self.visit(ast.body, [{}] + param) #! tạo ra tầm vực mới
-        self.BlockFor -= 1 #! cút khỏi vòng for nào anh em
+        self.BlockFor += 1 
+        self.visit(ast.body, [{}] + param) 
+        self.BlockFor -= 1 
     
     def visitReturn(self, ast, param):
         self.Return = True
@@ -398,7 +397,7 @@ class StaticChecker(BaseVisitor, Utils):
                 elif type(LHS) is ArrayType:
                     if not self.setTypeArray(LHS, RHS, ast.expr, param):
                         raise TypeMismatchInStatement(ast)
-                    else: # infer type
+                    else: 
                         pass
             elif isinstance(RHS, Zcode):
                 if type(RHS) is FuncZcode:
@@ -667,7 +666,6 @@ class StaticChecker(BaseVisitor, Utils):
             return ArrayType(left.size[1:], left.eleType)
 
     def visitArrayLiteral(self, ast, param):
-        #* bước 1 chọn được type đã xác định kiểm trong ast.value (typ không phải là Zcode và ArrayZcode)
         typ = None
         for item in ast.value:
             checkTyp = self.visit(item, param)

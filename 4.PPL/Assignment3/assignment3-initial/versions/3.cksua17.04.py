@@ -254,8 +254,8 @@ class StaticChecker(BaseVisitor, Utils):
                 if type(name) in [StringType(), BoolType(), NumberType()]:
                     raise TypeMismatchInStatement(ast)
                 elif type(name) is ArrayType():
-                    # if self.setTypeArray(LHS, RHS)
-                    pass
+                    if not self.setTypeArray(ast.varType, init, ast.varInit, param):
+                        raise TypeMismatchInStatement(ast)
             elif type(name) is Zcode() and type(init) in [StringType(), BoolType(), NumberType()]:
                 param[0][name] = VarZcode(type(init))
             # elif type(name) in [StringType(), BoolType(), NumberType()] and type(init) is Zcode() :

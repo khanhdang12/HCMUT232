@@ -1,0 +1,3 @@
+socat -d -d pty,raw,echo=0 pty,raw,echo=0
+
+python3 -u "/Users/khanhdang/Downloads/HCMUT232/2.IOT/LAB_MANUALS/main.py"

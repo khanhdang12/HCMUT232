@@ -3,6 +3,7 @@ from Adafruit_IO import MQTTClient
 import time
 import random
 from simple_ai import *
+from uart import *
 
 AIO_FEED_ID = ["nutnhan1", "nutnhan2"]
 AIO_USERNAME = "congphu"
@@ -21,7 +22,17 @@ def disconnected(client):
     sys.exit (1)
 
 def message(client , feed_id , payload):
-    print("Nhan du lieu: " + payload + "feed id: " + feed_id)
+    print("Nhan du lieu: " + payload + ", feed id:" + feed_id)
+    if feed_id == "button1":
+        if payload == "0":
+            writeData("1")
+        else:
+            writeData("2")
+    if feed_id == "button2":
+        if payload == "0":
+            writeData("3")
+        else:
+            writeData("4")
 
 client = MQTTClient(AIO_USERNAME , AIO_KEY)
 client.on_connect = connected
@@ -36,25 +47,25 @@ counter_ai = 10
 ai_result = ""
 
 while True:
-    counter = counter - 1
-    if counter <= 0:
-        counter = 10
-        # print("Random data is publishing...")
-        if sensor_type == 0:
-            print("Temperature data is publishing...")
-            sensor_type = 1
-            temp = random.randint(10, 20)
-            client.publish("cambien1", temp)
-        elif sensor_type == 1:
-            print("Light data is publishing...")
-            sensor_type = 2
-            light = random.randint(100, 500)
-            client.publish("cambien2", light)
-        elif sensor_type == 2:
-            print("Humid data is publishing...")
-            sensor_type = 0
-            humi = random.randint(50, 70)
-            client.publish("cambien3", humi)
+    # counter = counter - 1
+    # if counter <= 0:
+    #     counter = 10
+    #     # print("Random data is publishing...")
+    #     if sensor_type == 0:
+    #         print("Temperature data is publishing...")
+    #         sensor_type = 1
+    #         temp = random.randint(10, 20)
+    #         client.publish("cambien1", temp)
+    #     elif sensor_type == 1:
+    #         print("Light data is publishing...")
+    #         sensor_type = 2
+    #         light = random.randint(100, 500)
+    #         client.publish("cambien2", light)
+    #     elif sensor_type == 2:
+    #         print("Humid data is publishing...")
+    #         sensor_type = 0
+    #         humi = random.randint(50, 70)
+    #         client.publish("cambien3", humi)
 
     counter_ai = counter_ai - 1
     if counter_ai <= 0:
@@ -65,5 +76,6 @@ while True:
         if previous_result != ai_result:
             client.publish("ai", ai_result)
 
+    readSerial(client)
     time.sleep(1)
     pass

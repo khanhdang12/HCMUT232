@@ -1,8 +1,6 @@
 
-            func foo(number a[2,2]) return 1
             func main() begin
                 dynamic x
-                var a <- foo(x)
-                x <- [1,2]
+                number a <- 1 + [x,1]
             end
         

@@ -1,4 +1,3 @@
-# 2053105
 from AST import *
 from Visitor import *
 from Utils import Utils
@@ -131,9 +130,11 @@ class StaticChecker(BaseVisitor, Utils):
     
     def setTypeArray(self, typeArray, typeArrayZcode):
         
+        # Trường hợp size khác nhau
         if typeArray.size[0] != len(typeArrayZcode.eleType):
             return False 
 
+        # Trường hợp bên trong array là các kiểu nguyên thủy (array 1 chiều)
         if len(typeArray.size) == 1:
             
             for i in range(len(typeArrayZcode.eleType)):
@@ -143,6 +144,7 @@ class StaticChecker(BaseVisitor, Utils):
                 elif type(typeArrayZcode.eleType[i]) is ArrayZcode:
                     return False
             
+        #* Trường hợp bên trong array là các arrayType (array >= 2 chiều)
         else:
             for i in range(len(typeArrayZcode.eleType)):
                 if isinstance(typeArrayZcode.eleType[i], Zcode):
@@ -166,6 +168,7 @@ class StaticChecker(BaseVisitor, Utils):
             raise NoEntryPoint()
         
     def visitVarDecl(self, ast, param):
+        #Redeclared
         name = ast.name.name
         if param[0].get(name):
             raise Redeclared(Variable(), name)
@@ -180,8 +183,13 @@ class StaticChecker(BaseVisitor, Utils):
             self.LHS_RHS_stmt(LHS, RHS , ast, param)
 
     def visitFuncDecl(self, ast, param):
+        # name: Id
+        # param: List[VarDecl]  # empty list if there is no parameter
+        # body: Stmt = None  # None if this is just a declaration-part
+
         name = ast.name.name
         method = self.listFunction.get(name)
+        # Redeclared
         if method and (method.body or (not method.body and not ast.body)):
             raise Redeclared(Function(), name)
 
@@ -194,10 +202,11 @@ class StaticChecker(BaseVisitor, Utils):
             listParam[param_decl.name.name] = VarZcode(param_decl.varType)
             typeParam.append(param_decl.varType)
 
+        # 1. First declare No body
         if ast.body is None:
             self.listFunction[name] = FuncZcode(typeParam, None, False)
-            return
 
+        # 2. Second declare 
         elif method:
             if not self.comparListType(typeParam, method.param):
                 raise Redeclared(Function(), name)
@@ -206,20 +215,24 @@ class StaticChecker(BaseVisitor, Utils):
             self.Return = False
             self.function = self.listFunction[name]
             self.visit(ast.body, [listParam] + param)
-
+            if not self.Return:
+                if self.function.typ is None: 
+                    self.function.typ = VoidType()
+                    self.listFunction[name].typ = VoidType()                  
+                elif type(self.function.typ) is not VoidType:
+                    raise TypeMismatchInStatement(Return())
         else:
             self.listFunction[name] = FuncZcode(typeParam, None, True)
 
             self.Return = False
             self.function = self.listFunction[name] 
             self.visit(ast.body, [listParam] + param)
-
-        if not self.Return:
-            if self.function.typ is None: 
-                self.function.typ = VoidType()
-                self.listFunction[name].typ = VoidType()
-            elif not isinstance(self.listFunction[name].typ, VoidType):
-                raise TypeMismatchInStatement(Return())
+            if not self.Return:
+                if self.function.typ is None: 
+                    self.function.typ = VoidType()
+                    self.listFunction[ast.name.name].typ = VoidType()
+                elif not isinstance(self.listFunction[name].typ, VoidType):
+                    raise TypeMismatchInStatement(Return())
  
     def visitId(self, ast, param):
         name = ast.name
@@ -229,6 +242,7 @@ class StaticChecker(BaseVisitor, Utils):
                 return id.typ if id.typ else id
         
         raise Undeclared(Identifier(), name)
+
 
     def visitCallExpr(self, ast, param):
         name = ast.name.name
@@ -278,31 +292,42 @@ class StaticChecker(BaseVisitor, Utils):
         return method.typ
 
     def visitIf(self, ast, param):
+        """_typExpr_"""   
         LHS = self.visit(ast.expr, param)
         RHS = BoolType()
         self.LHS_RHS_stmt(LHS, RHS , ast, param)
 
         self.visit(ast.thenStmt, param)    
         
+        """_elifStmt_"""   
         for item in ast.elifStmt:
             LHS = self.visit(item[0], param)
             RHS = BoolType()
             self.LHS_RHS_stmt(LHS, RHS , ast, param)
 
             self.visit(item[1], param)           
-       
+
+        """_elseStmt_
+        """            
         if ast.elseStmt is not None:
             self.visit(ast.elseStmt, param)
         
-    def visitFor(self, ast, param):      
+    def visitFor(self, ast, param):
+        # name: Id
+        # condExpr: Expr
+        # updExpr: Expr
+        # body: Stmt
+        """_typID_"""        
         LHS = self.visit(ast.name, param)
         RHS = NumberType()
         self.LHS_RHS_stmt(LHS, RHS , ast, param)
 
+        """_typCondExpr_"""    
         LHS = self.visit(ast.condExpr, param)
         RHS = BoolType()
         self.LHS_RHS_stmt(LHS, RHS , ast, param) 
 
+        """_typUpdExpr_"""            
         LHS = self.visit(ast.updExpr, param)
         RHS = NumberType()
         self.LHS_RHS_stmt(LHS, RHS , ast, param) 
@@ -318,11 +343,16 @@ class StaticChecker(BaseVisitor, Utils):
         self.LHS_RHS_stmt(LHS, RHS , ast, param) 
 
     def visitAssign(self, ast, param):
+        # lhs: Expr
+        # exp: Expr
         LHS = self.visit(ast.lhs, param)
         RHS = self.visit(ast.rhs, param)
         self.LHS_RHS_stmt(LHS, RHS , ast, param) 
             
     def visitBinaryOp(self, ast, param):
+        # op: str
+        # left: Expr
+        # right: Expr
         op = ast.op
         LHS1 = self.visit(ast.left, param)
 
@@ -343,7 +373,9 @@ class StaticChecker(BaseVisitor, Utils):
         
         cannotBeInferred = self.LHS_RHS_expr(LHS1, RHS1 , ast, param)
         if cannotBeInferred: return CannotBeInferredZcode()
-          
+        
+        """_right_        
+        """       
         RHS2 = self.visit(ast.right, param)
         if op in ['+', '-', '*', '/', '%']:
             LHS2 = NumberType()
@@ -376,6 +408,8 @@ class StaticChecker(BaseVisitor, Utils):
             return StringType()
 
     def visitUnaryOp(self, ast, param):
+        # op: str
+        # operand: Expr
         op = ast.op
         LHS = self.visit(ast.operand, param)
         if op in ['+', '-']:
@@ -391,6 +425,8 @@ class StaticChecker(BaseVisitor, Utils):
             return BoolType()
             
     def visitArrayCell(self, ast, param):
+        # arr: Expr
+        # idx: List[Expr]
         arr = self.visit(ast.arr, param)
         if isinstance(arr, (BoolType, StringType, NumberType)):
             raise TypeMismatchInExpression(ast)
@@ -416,10 +452,12 @@ class StaticChecker(BaseVisitor, Utils):
             elif isinstance(checkTyp, CannotBeInferredZcode):
                 return CannotBeInferredZcode()
         
+        #^ TH1 : mainTyp is None
         if mainTyp is None:
             eleType = [self.visit(val, param) for val in ast.value]
             return ArrayZcode(eleType)
 
+        # main là BoolType, StringType, NumberType
         elif type(mainTyp) in [BoolType, StringType, NumberType]:
             for item in ast.value:
                 LHS = mainTyp 
@@ -428,6 +466,7 @@ class StaticChecker(BaseVisitor, Utils):
                     return CannotBeInferredZcode()
             return ArrayType([len(ast.value)], mainTyp)
         
+        # main là mảng
         else:
             for item in ast.value:
                 LHS = self.visit(item, param)

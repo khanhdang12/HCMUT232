@@ -3,7 +3,9 @@ from TestUtils import TestChecker
 from AST import *
 
 class CheckSuite(unittest.TestCase):
+    
 
+    
     def test_1_No_entry_point(self):
         input = """
             func main() return

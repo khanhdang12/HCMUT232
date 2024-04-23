@@ -6,7 +6,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.github.angads25.toggle.interfaces.OnToggledListener;
+import com.github.angads25.toggle.model.ToggleableView;
+import com.github.angads25.toggle.widget.LabeledSwitch;
+
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import java.nio.charset.Charset;
 
 public class MainActivity extends AppCompatActivity {
     MQTTHelper mqttHelper;
@@ -23,24 +31,26 @@ public class MainActivity extends AppCompatActivity {
         btnLED = findViewById(R.id.btnLED);
         btnPUMP = findViewById(R.id.btnPUMP);
 
-        btnLED.setOnToggleListener(new OnToggleListener() {
+        btnLED.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
-                if (isOn == true) {
-                    sendDataMQTT("congphu/feeds/nutnhan1", "1");
-                } else {
-                    sendDataMQTT("congphu/feeds/nutnhan1", "0");
+                if(isOn == true){
+                    sendDataMQTT("congphu/feeds/button1","1");
+                }
+                else{
+                    sendDataMQTT("congphu/feeds/button1","0");
                 }
             }
         });
 
-        btnPUMP.setOnToggleListener(new OnToggleListener() {
+        btnPUMP.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
-                if (isOn == true) {
-                    sendDataMQTT("congphu/feeds/nutnhan2", "1");
-                } else {
-                    sendDataMQTT("congphu/feeds/nutnhan2", "0");
+                if(isOn == true){
+                    sendDataMQTT("congphu/feeds/button2","1");
+                }
+                else{
+                    sendDataMQTT("congphu/feeds/button2","0");
                 }
             }
         });
@@ -65,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startMQTT(){
         mqttHelper = new MQTTHelper(this);
-        mqttHelper.setCallBack(new MqttCallbackExtended()
-        {
+        mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
 

@@ -3,8 +3,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
         maven {
-            url "https://repo.eclipse.org/content/repositories/paho-snapshot/"
+            url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
         }
     }
 }

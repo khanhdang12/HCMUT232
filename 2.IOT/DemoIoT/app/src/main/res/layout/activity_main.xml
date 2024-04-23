@@ -24,8 +24,7 @@
             android:layout_weight="9"
             android:text="IoT Demo"
             android:gravity="center"
-            android:textSize="30dp"
-            android:textColor="ff0000"/>
+            android:textSize="30dp"/>
 
     </LinearLayout>
 

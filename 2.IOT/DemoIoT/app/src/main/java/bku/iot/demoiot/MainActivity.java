@@ -18,7 +18,7 @@ import java.nio.charset.Charset;
 
 public class MainActivity extends AppCompatActivity {
     MQTTHelper mqttHelper;
-    TextView txtTemp, txtHumi;
+    TextView txtTemp, txtLight, txtHumi;
     LabeledSwitch btnLED, btnPUMP;
 
     @Override
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         txtTemp = findViewById(R.id.txtTemperature);
         txtHumi = findViewById(R.id.txtHumidity);
+        txtLight = findViewById(R.id.txtLight);
         btnLED = findViewById(R.id.btnLED);
         btnPUMP = findViewById(R.id.btnPUMP);
 
@@ -35,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
                 if(isOn == true){
-                    sendDataMQTT("congphu/feeds/button1","1");
+                    sendDataMQTT("congphu/feeds/nutnhan1","1");
                 }
                 else{
-                    sendDataMQTT("congphu/feeds/button1","0");
+                    sendDataMQTT("congphu/feeds/nutnhan1","0");
                 }
             }
         });
@@ -47,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
                 if(isOn == true){
-                    sendDataMQTT("congphu/feeds/button2","1");
+                    sendDataMQTT("congphu/feeds/nutnhan2","1");
                 }
                 else{
-                    sendDataMQTT("congphu/feeds/button2","0");
+                    sendDataMQTT("congphu/feeds/nutnhan2","0");
                 }
             }
         });
@@ -78,12 +79,16 @@ public class MainActivity extends AppCompatActivity {
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
-
+//                btnLED.setEnabled(true);
+//                btnPUMP.setEnabled(true);
+//                Log.d("TEST", "MQTT connected");
             }
 
             @Override
             public void connectionLost(Throwable cause) {
-
+//                btnLED.setEnabled(false);
+//                btnPUMP.setEnabled(false);
+//                Log.d("TEST", "Lost conection to MQTT");
             }
 
             @Override
@@ -94,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (topic.contains("cambien2")) {
                     txtHumi.setText(message.toString() + "%");
+                }
+                else if (topic.contains("cambien3")) {
+                    txtHumi.setText(message.toString() + "LUX");
                 }
                 else if (topic.contains("nutnhan1")) {
                     if (message.toString().equals("1")) {

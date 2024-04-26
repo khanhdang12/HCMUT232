@@ -79,16 +79,16 @@ public class MainActivity extends AppCompatActivity {
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
-//                btnLED.setEnabled(true);
-//                btnPUMP.setEnabled(true);
-//                Log.d("TEST", "MQTT connected");
+                btnLED.setEnabled(true);
+                btnPUMP.setEnabled(true);
+                Log.d("TEST", "MQTT connected");
             }
 
             @Override
             public void connectionLost(Throwable cause) {
-//                btnLED.setEnabled(false);
-//                btnPUMP.setEnabled(false);
-//                Log.d("TEST", "Lost conection to MQTT");
+                btnLED.setEnabled(false);
+                btnPUMP.setEnabled(false);
+                Log.d("TEST", "Lost conection to MQTT");
             }
 
             @Override
@@ -98,25 +98,51 @@ public class MainActivity extends AppCompatActivity {
                     txtTemp.setText(message.toString() + "°C");
                 }
                 else if (topic.contains("cambien2")) {
-                    txtHumi.setText(message.toString() + "%");
+                    txtLight.setText(message.toString() + "LUX");
                 }
                 else if (topic.contains("cambien3")) {
-                    txtHumi.setText(message.toString() + "LUX");
+                    txtHumi.setText(message.toString() + "%");
                 }
                 else if (topic.contains("nutnhan1")) {
                     if (message.toString().equals("1")) {
-                        btnLED.setOn(true);
+                        if (btnLED.isEnabled()) {
+                            btnLED.setOn(true);
+                        }
+                        else {
+                            Log.d("TEST", "MQTT lost connection");
+                        }
                     }
                     else {
-                        btnLED.setOn(false);
+                        if (btnLED.isEnabled()) {
+                            btnLED.setOn(false);
+                        }
+                        else {
+                            Log.d("TEST", "MQTT lost connection");
+                        }
                     }
                 }
                 else if (topic.contains("nutnhan2")) {
                     if (message.toString().equals("1")) {
-                        btnPUMP.setOn(true);
+                        if (btnLED.isEnabled()) {
+                            btnPUMP.setOn(true);
+                        }
+                        else
+                        {
+                            Log.d("TEST", "MQTT lost connection");
+
+                        }
+
                     }
                     else {
-                        btnPUMP.setOn(false);
+                        if (btnLED.isEnabled()) {
+
+                            btnPUMP.setOn(false);
+                        }
+                        else
+                        {
+                            Log.d("TEST", "MQTT lost connection");
+
+                        }
                     }
                 }
             }

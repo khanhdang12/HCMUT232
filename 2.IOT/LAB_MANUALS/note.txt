@@ -1,3 +1,9 @@
 socat -d -d pty,raw,echo=0 pty,raw,echo=0
 
 python3 -u "/Users/khanhdang/Downloads/HCMUT232/2.IOT/LAB_MANUALS/main.py"
+
+echo \!1:T:70# > /dev/ttys018
+
+echo \!1:L:200# > /dev/ttys018
+
+echo \!1:H:90# > /dev/ttys018

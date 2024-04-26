@@ -23,12 +23,12 @@ def disconnected(client):
 
 def message(client , feed_id , payload):
     print("Nhan du lieu: " + payload + ", feed id:" + feed_id)
-    if feed_id == "button1":
+    if feed_id == "nutnhan1":
         if payload == "0":
             writeData("1")
         else:
             writeData("2")
-    if feed_id == "button2":
+    if feed_id == "nutnhan2":
         if payload == "0":
             writeData("3")
         else:

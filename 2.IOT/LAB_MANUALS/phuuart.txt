@@ -1,6 +1,5 @@
 import serial.tools.list_ports
 
-
 def getPort():
     ports = serial.tools.list_ports.comports()
     N = len(ports)
@@ -11,11 +10,11 @@ def getPort():
         if "USB Serial Device" in strPort:
             splitPort = strPort.split(" ")
             commPort = (splitPort[0])
-    return "/dev/ttys003"
+    #return commPort
+    return "COM4"
 
-
-if getPort()!= "None":
-    ser = serial.Serial( port=getPort(), baudrate=115200)
+if getPort() != "None":
+    ser = serial.Serial(port=getPort(), baudrate=115200)
     print(ser)
 
 def processData(client, data):
@@ -25,12 +24,8 @@ def processData(client, data):
     print(splitData)
     if splitData[1] == "T":
         client.publish("cambien1", splitData[2])
-    elif splitData[1] == "L":
-        client.publish("cambien2", splitData[2])
     elif splitData[1] == "H":
-        client.publish("cambien3", splitData[2])
-
-
+        client.publish("cambien2", splitData[2])
 mess = ""
 def readSerial(client):
     bytesToRead = ser.inWaiting()
@@ -46,8 +41,5 @@ def readSerial(client):
             else:
                 mess = mess[end+1:]
 
-
 def writeData(data):
     ser.write(str(data).encode())
-    # ret = serial.Serial("/dev/ttys023", baudrate=115200)
-    # ret.write(str(data).encode())

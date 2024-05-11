@@ -1,0 +1,9 @@
+
+        number a <- 1
+        func main ()
+        begin
+            writeNumber(a)
+            number a <- 2
+            writeNumber(a)
+        end
+        

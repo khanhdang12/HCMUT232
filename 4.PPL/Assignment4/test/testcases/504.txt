@@ -1,0 +1,10 @@
+
+        number a
+        
+        func main ()
+        begin
+            writeNumber(a)
+            number b
+            writeNumber(b)
+        end
+        
